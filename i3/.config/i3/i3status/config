@@ -1,0 +1,62 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 3
+}
+
+# List of items to display in the bar.
+order += "disk /"
+order += "run_watch DHCP"
+order += "battery"
+order += "cpu_usage"
+order += "memory"
+order += "ethernet eth0"
+order += "wireless wlan0"
+order += "time"
+
+# Display disk usage for the root (/) partition.
+disk "/" {
+    format = "Disk: %free"
+}
+
+# Watch for the DHCP client process to be running.
+run_watch DHCP {
+    pidfile = "/var/run/dhclient*.pid"
+}
+
+# Display battery status.
+
+program "battery_custom" {
+    path = "~/.config/i3/i3status/battery.sh"
+}
+
+# Display CPU usage.
+cpu_usage {
+    format = "CPU: %usage"
+}
+
+# Display memory usage.
+memory {
+    format = "Memory: %used/%total"
+}
+
+# Display ethernet status.
+# ethernet eth0 {
+#     format_up = "Ethernet: %ip (%speed)"
+#     format_down = "Ethernet: disconnected"
+# }
+
+# Display wireless status.
+wireless wlan0 {
+    format_up = "WiFi: %essid (%signal)"
+    format_down = "WiFi: disconnected"
+}
+
+# Display current time.
+time {
+    format = "%Y-%m-%d %H:%M:%S"
+}
+
