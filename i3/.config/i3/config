@@ -185,7 +185,7 @@ set $ws10 "10"
 
 # Lock the screen with Mod+Esc
 # after 5 secs it should fade away
-  bindsym $mod+Escape exec i3lock -i "/home/ganesh/Pictures/lockscreen.png" 
+  bindsym $mod+Escape exec "i3lock -i '/home/ganesh/Pictures/lockscreen.png' && sleep 3 && xset dpms force off"
 
 
 # Suspend the system with Mod+Shift+Srthurthu
