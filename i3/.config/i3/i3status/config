@@ -8,13 +8,13 @@ general {
 }
 
 # List of items to display in the bar.
+order += "volume master"
 order += "disk /"
-order += "run_watch DHCP"
-order += "battery"
+order += "battery 0"
 order += "cpu_usage"
 order += "memory"
 order += "ethernet eth0"
-order += "wireless wlan0"
+order += "wireless wlp1s0"
 order += "time"
 
 # Display disk usage for the root (/) partition.
@@ -22,15 +22,18 @@ disk "/" {
     format = "Disk: %free"
 }
 
-# Watch for the DHCP client process to be running.
-run_watch DHCP {
-    pidfile = "/var/run/dhclient*.pid"
-}
-
 # Display battery status.
-
-program "battery_custom" {
-    path = "~/.config/i3/i3status/battery.sh"
+battery 0 {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+        status_chr = "⚡ CHR"
+        status_bat = "🔋 BAT"
+        status_unk = "? UNK"
+        last_full_capacity = true
+        status_full = "☻ FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        integer_battery_capacity = true
+        low_threshold = 10
 }
 
 # Display CPU usage.
@@ -40,7 +43,16 @@ cpu_usage {
 
 # Display memory usage.
 memory {
-    format = "Memory: %used/%total"
+        format = "Memory: %used/%total"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
 
 # Display ethernet status.
@@ -50,8 +62,8 @@ memory {
 # }
 
 # Display wireless status.
-wireless wlan0 {
-    format_up = "WiFi: %essid (%signal)"
+wireless wlp1s0 {
+    format_up = "W: (%quality at %essid, %bitrate) %ip"
     format_down = "WiFi: disconnected"
 }
 
