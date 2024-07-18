@@ -188,7 +188,7 @@ set $ws10 "10"
 # configure battery percentage in the bar
   bar {
           # status_command /home/ganesh/.config/i3/my-i3-status/node_modules/.bin/i3-status -c /home/ganesh/.config/i3/my-i3-status/config.yml --secret "ganesh"
-          status_command i3status
+          status_command i3status -c  ~/.config/i3/i3status/config 
   }
 
 # Lock the screen with Mod+Esc
