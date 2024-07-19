@@ -211,10 +211,12 @@ set $ws10 "10"
   bindsym $mod+Shift+P exec "i3-nagbar -t warning -m 'Are you sure you want to shutdown i3?' -B 'Yes, shutdown i3' 'systemctl shutdown'"
 
 # Switch to the next workspace with Mod+Tab
-  bindsym $mod+Tab exec i3-msg workspace next
+  # bindsym $mod+Tab exec i3-msg workspace next
+  bindsym $mod+Tab exec python3 ~/.config/i3/switch_monitor_workspaces.py "forward" 
 
 # Switch to the previous workspace with Mod+Shift+Tab
-  bindsym $mod+Shift+Tab exec i3-msg workspace previous
+  # bindsym $mod+Shift+Tab exec i3-msg workspace previous
+  bindsym $mod+Shift+Tab exec python3 ~/.config/i3/switch_monitor_workspaces.py "backward" 
 
 # Search for a container in the current workspace
   # bindsym $mod+space exec ~/.config/i3/search_container.sh
