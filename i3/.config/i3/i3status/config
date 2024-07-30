@@ -13,24 +13,26 @@ order += "disk /"
 order += "battery 0"
 order += "cpu_usage"
 order += "memory"
-order += "ethernet eth0"
+order += "ethernet enxac1a3daeed44"
 order += "wireless wlp1s0"
 order += "time"
 
 # Display disk usage for the root (/) partition.
 disk "/" {
-    format = "Disk: %free"
+    format = "📂 %free"
+    # format = "Memory: %free"
 }
 
 # Display battery status.
 battery 0 {
         format = "%status %percentage %remaining %emptytime"
         format_down = "No battery"
-        status_chr = "⚡ CHR"
-        status_bat = "🔋 BAT"
+        status_chr = "⚡"
+        status_bat = "🔋"
         status_unk = "? UNK"
         last_full_capacity = true
-        status_full = "☻ FULL"
+        # status_full = "☻ FULL"
+        status_full = "██████ 100%"
         path = "/sys/class/power_supply/BAT%d/uevent"
         integer_battery_capacity = true
         low_threshold = 10
@@ -38,33 +40,36 @@ battery 0 {
 
 # Display CPU usage.
 cpu_usage {
-    format = "CPU: %usage"
+    format = "🤖 %usage"
+    max_threshold = 75
+    format_above_threshold = "🤖🔥 %usage"
+    # format = "CPU: %usage"
 }
 
 # Display memory usage.
 memory {
-        format = "Memory: %used/%total"
+        format = "📟 %used/%total"
         threshold_degraded = "10%"
-        format_degraded = "MEMORY: %free"
+        format_degraded = "📟🔥 Free: %free"
 }
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = "🎶 %volume"
+        format_muted = "🤐 muted (%volume)"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
 }
 
 # Display ethernet status.
-# ethernet eth0 {
-#     format_up = "Ethernet: %ip (%speed)"
-#     format_down = "Ethernet: disconnected"
-# }
+ethernet enxac1a3daeed44 {
+    format_up = "E: %ip (%speed)"
+    format_down = "E: 🔴"
+}
 
 # Display wireless status.
 wireless wlp1s0 {
     format_up = "W: (%quality at %essid, %bitrate) %ip"
-    format_down = "WiFi: disconnected"
+    format_down = "W: 🔴"
 }
 
 # Display current time.
