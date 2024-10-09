@@ -120,6 +120,7 @@ alt-n = 'workspace N'
 alt-t = 'workspace T'
 alt-y = 'workspace Y'
 alt-w = 'workspace W'
+alt-v = 'workspace V'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -137,6 +138,7 @@ alt-shift-n = 'move-node-to-workspace N'
 alt-shift-t = 'move-node-to-workspace T'
 alt-shift-y = 'move-node-to-workspace Y'
 alt-shift-w = 'move-node-to-workspace W'
+alt-shift-v = 'move-node-to-workspace V'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -185,5 +187,9 @@ run = "move-node-to-workspace N"
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = "move-node-to-workspace W"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = "move-node-to-workspace V"
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # on-focus-changed = "move-mouse window-lazy-center"
